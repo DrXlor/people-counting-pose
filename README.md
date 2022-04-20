@@ -46,9 +46,6 @@
 ### Запуск на вашем видео
 9. В открывшейся командной строке поочередно выполнить следующие команды - 
 ```
-	9.1 git clone https://github.com/DrXlor/people-counting-pose
-	9.2 cd people-counting-pose
-	9.3 chmod u+x ./compile.sh && ./compile.sh && cd models/coco && chmod u+x download_models_wget.sh && ./download_models_wget.sh && cd -
 	9.4 mv ../test/YOUR_VIDE_NAME.mp4 testset
 	9.5*** python video_tracking.py -f 'YOUR_VIDE_NAME.mp4'
 	9.6 mv testset/people_tracking.mp4 ../test
