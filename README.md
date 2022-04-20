@@ -48,7 +48,7 @@
 ```
 	9.4 mv ../test/YOUR_VIDE_NAME.mp4 testset
 	9.5*** python video_tracking.py -f 'YOUR_VIDE_NAME.mp4'
-	9.6 mv testset/people_tracking.mp4 ../test
+	9.6 mv testset/YOUR_VIDEO_NAME_tracking.mp4 ../test
 ```
 ###
 10. В созданной ранее папке вы найдете видео под названием people_tracking.mp4 , которое будет результатом работы программы.
