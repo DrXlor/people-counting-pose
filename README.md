@@ -11,80 +11,56 @@
 
 ## Usage
 
-Uses [Docker](https://docker.com)  
+ВАЖНО: Данное пособие составлено для Windows 10 с включенной возсожностью виртуализации.
+### Установка Docker Destop
+1.* Перейдите по ссылке и скачайте Docker Desktop, после чего проследуйте инструкции установки и запустите программу (пропустите туториал)
+	1.1 https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module
+### Скачивание образа докера
+2. Нажать сочетание клавиш Win+R, ввести cmd и нажать 'ОК',Выполнить команду docker pull jgravity/tensorflow-opencv:odin
+### Подготовка репозитория с выводом
+3.** Создать папку для вывода видеофайла. (Если вы хотите запустить программу на своем видео, необходимо разместить его в этой папке.
 
-#### Pull docker image
-```
-$ docker pull jgravity/tensorflow-opencv:odin
-$ docker run -it --name odin jgravity/tensorflow-opencv:odin bin/bash
-```
+### Работа с Docker
+4. Открыть Docker Desktop
+5. Перейти во вкладку Images и у строки jgravity/tensorflow-opencv нажать кнопку Run.
 
-#### Download/Install code
+### Настройка и создание контейнера
+6. В открывшемся окне развернуть Optional Settings. 
 ```
-# git clone https://github.com/PJunhyuk/people-counting-pose
-# cd people-counting-pose
-# chmod u+x ./compile.sh && ./compile.sh && cd models/coco && chmod u+x download_models_wget.sh && ./download_models_wget.sh && cd -
+	6.1 В поле Host Path вставить абсолютный путь до папки, которую вы создали в формате < C:\Something\Something\TargetFolder >. 
+	6.2 В поле Container path вставить < /test >.
+   	6.3 Нажать кнпоку Run.
+	6.4 Назовите контейнер Test_1 (к примеру)
 ```
-
-#### Download sample videos in testset
+### Работа с контейнером
+7. Во вкладке Containers / Apps, на открывшемся контейнере Test нажать кнпоку CLI
+#### Запуск на тестовом видео (тест работоспособности)
+8. В открывшейся командной строке поочередно выполнить следующие команды - 
 ```
-# cd testset && chmod u+x ./download_testset_wget.sh && ./download_testset_wget.sh && cd -
+	8.1 git clone https://github.com/DrXlor/people-counting-pose
+	8.2 cd people-counting-pose
+	8.3 chmod u+x ./compile.sh && ./compile.sh && cd models/coco && chmod u+x download_models_wget.sh && ./download_models_wget.sh && cd -
+	8.5*** python video_pose_test.py'
+	8.6 mv testset/people_pose.mp4 ../test
 ```
-
-#### Tracking people
+### Запуск на вашем видео
+9. В открывшейся командной строке поочередно выполнить следующие команды - 
 ```
-# python video_tracking.py -f '{video_file_name}'
+	8.1 git clone https://github.com/DrXlor/people-counting-pose
+	8.2 cd people-counting-pose
+	8.3 chmod u+x ./compile.sh && ./compile.sh && cd models/coco && chmod u+x download_models_wget.sh && ./download_models_wget.sh && cd -
+	8.4 mv ../test/YOUR_VIDE_NAME.mp4 testset
+	8.5*** python video_tracking.py -f 'YOUR_VIDE_NAME.mp4'
+	8.6 mv testset/people_tracking.mp4 ../test
 ```
-> Qualified supporting video type: mov, mp4  
-> You have to put target video file in ./testset folder  
+###
+10. В созданной ранее папке вы найдете видео под названием people_tracking.mp4 , которое будет результатом работы программы.
 
-###### Arguments
-> -f, --videoFile = Path to Video File  
-> -w, --videoWidth = Width of Output Video  
-> -o, --videoType = Extension of Output Video
+### Примечания:
+	* Если данное ПО уже есть у вас, данный шаг можно пропустить.
+	** Можно использовать любой видеофайл на ваш выбор, достпные форматы - .MOV, .MP4 
+	*** Для получения ТОЛЬКО позы людей на видео, используйте команду - python video_pose.py -f 'people.mp4' 
 
-###### Example
-```
-# python video_tracking.py -f 'test_video_01f.mov'
-```
-
-#### Check results
-```
-> docker cp odin:/people-counting-pose/testset/{video_file_name} ./
-```
-
-#### Just get pose of people (without tracking)
-```
-# python video_pose.py -f '{video_file_name}'
-```
-> Qualified supporting video type: mov, mp4
-
-## Dependencies
-
-Use Docker [jgravity/tensorflow-opencv](https://hub.docker.com/r/jgravity/tensorflow-opencv/),
-
-or install
-
-- python 3.5.3
-- opencv 3.1.0
-- jupyter 4.2.1
-- git 2.1.4
-- tensorflow 1.3.0
-- pip packages
-  - scipy 0.19.1
-  - scikit-image 0.13.1
-  - matplotlib 2.0.2
-  - pyYAML 3.12
-  - easydict 1.7
-  - Cython 0.27.1
-  - munkres 1.0.12
-  - moviepy 0.2.3.2
-  - dlib 19.7.0
-  - imageio 2.1.2
-
-## Results (time required)
-
-Check [results_log](https://github.com/PJunhyuk/people-counting-pose/blob/master/results_log.md)
 
 ## Reference
 
