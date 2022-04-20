@@ -40,7 +40,7 @@
 	8.1 git clone https://github.com/DrXlor/people-counting-pose
 	8.2 cd people-counting-pose
 	8.3 chmod u+x ./compile.sh && ./compile.sh && cd models/coco && chmod u+x download_models_wget.sh && ./download_models_wget.sh && cd -
-	8.5 python video_pose_test.py'
+	8.5 python video_pose_test.py
 	8.6 mv testset/people_pose.mp4 ../test
 ```
 ### Запуск на вашем видео
